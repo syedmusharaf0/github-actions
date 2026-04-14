@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   deploy:
@@ -17,15 +17,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy Via SSH
-  uses: appleboy/ssh-action@v1.0.3
-  with:
-    host: ${{ secrets.SSH_HOST }}
-    username: ec2-user
-    key: ${{ secrets.SSH_KEY }}
-    script: |
-      sudo su
-      git config --global --add safe.directory /home/ec2-user/github-actions
-      cd /home/ec2-user/github-actions
-      git pull
-      docker-compose down
-      docker-compose up -d --build
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ec2-user
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo su
+            git config --global --add safe.directory /home/ec2-user/github-actions
+            cd /home/ec2-user/github-actions
+            git pull
+            docker-compose down
+            docker-compose up -d --build
