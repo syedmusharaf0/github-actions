@@ -1,26 +1,25 @@
-name : Deploy Application Ai-assistance to ec2
+name: Deploy Application Ai-assistance to EC2
 
 on:
-   push:
-      branch:
-       - main
-        
+  push:
+    branches:
+      - main
+
 jobs:
-   deploy:
-      runs-on : ubuntu-latest
-      
+  deploy:
+    runs-on: ubuntu-latest
 
-      steps:
-        - name : Checkout Code
-          users : actions/checkout@v4
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-        - name : Deploy Via SSH
-          users : appleboy/ssh-action@v1.0.3
-          with:
-             host: ${{ secrets.SSH_HOST }}
-             username: root
-             key : ${{ secrets.SSH_KEY }}
-             script :
-                cd /home/ec2-user/github-actions
-                git pull
-                docker compose up -d --build
+      - name: Deploy Via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ec2-user
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /home/ec2-user/github-actions
+            git pull origin main
+            docker compose up -d --build
