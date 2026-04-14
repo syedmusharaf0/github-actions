@@ -22,7 +22,9 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
+          debug: true
           script: |
             cd /home/ec2-user/github-actions
             git pull
             docker-compose up -d --build
+
