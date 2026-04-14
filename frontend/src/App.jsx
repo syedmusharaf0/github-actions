@@ -27,7 +27,7 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://backend:8000/chat", {
+      const res = await fetch("http://EC2_PUBLIC_IP:8000/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
