@@ -13,13 +13,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-        - name : Deploy Via SSH
-          users : appleboy/ssh-action@v1.0.3
+        - name: Deploy Via SSH
+          uses: appleboy/ssh-action@v1.0.3
           with:
              host: ${{ secrets.SSH_HOST }}
-             username: root
-             key : ${{ secrets.SSH_KEY }}
-             script :
+             username: ec2-user
+             key: ${{ secrets.SSH_KEY }}
+             script:
                 cd /home/ec2-user/github-actions
                 git pull
                 docker-compose up -d --build
