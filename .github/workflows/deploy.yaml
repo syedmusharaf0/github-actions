@@ -20,6 +20,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.SSH_KEY }}
           script: |
+            git config --global --add safe.directory /home/ec2-user/github-actions
             cd /home/ec2-user/github-actions
             git pull
-            docker compose up -d --build
+            docker-compose up -d --build
