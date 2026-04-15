@@ -27,7 +27,7 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://3.110.81.207:8000/chat", {
+      const res = await fetch("http://15.207.87.42:8000/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
